@@ -1,5 +1,4 @@
 ./Activations/
-./TFRecords/
 /Deep_Learning/Activations/
 /Deep_Learning/__pycache__/
 /Deep_Learning/Evaluate_Model/Area/
@@ -169,3 +168,4 @@ dmypy.json
 .pytype/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+/TFRecords/
