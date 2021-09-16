@@ -1,4 +1,5 @@
 ./Activations/
+./TFRecords/
 /Deep_Learning/Activations/
 /Deep_Learning/__pycache__/
 /Deep_Learning/Evaluate_Model/Area/
