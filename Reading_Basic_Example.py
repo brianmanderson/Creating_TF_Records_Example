@@ -6,12 +6,14 @@ train_paths = [r'C:\Users\b5anderson\Desktop\Modular_Projects\TeachingTFRecords\
 data_generator = DataGeneratorClass(record_paths=train_paths)
 processors = [
     Processors.ExpandDimension(axis=-1, image_keys=('Patient_Image', 'Patient_Mask'),),
+    Processors.RandomCrop(keys_to_crop=('Patient_Image', 'Patient_Mask'),
+                          crop_dimensions=((4, 64, 64, 1), (4, 64, 64, 1))),
     Processors.ReturnOutputs(input_keys=('Patient_Image',), output_keys=('Patient_Mask',)),
-    # {'repeat'}
+    {'repeat'}
 ]
 data_generator.compile_data_set(image_processors=processors, debug=True)
 data_iterator = iter(data_generator.data_set)
-data = next(data_iterator)
-data2 = next(data_iterator)
-xxx = 1
+while True:
+    x, y = next(data_iterator)
+    xxx = 1
 

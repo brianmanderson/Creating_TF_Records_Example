@@ -6,8 +6,6 @@ import Data_Generators.Image_Processors_Module.src.Processors.MakeTFRecordProces
 from Data_Generators.Image_Processors_Module.src.Processors.TFRecordWriter import dictionary_to_tf_record
 
 
-# Processors.LoadNifti(nifti_path_keys=('image_path', 'annotation_path'),
-#                                          out_keys=('image_handle', 'annotation_handle')),
 image_array = np.random.random((10, 128, 128)) * 10
 annotation_array = np.zeros((10, 128, 128))
 annotation_array[3:8, 60:90, 60:90] = 1
@@ -17,6 +15,7 @@ image_handle.SetSpacing((1, 1, 1))
 
 annotation_handle = sitk.GetImageFromArray(annotation_array)
 annotation_handle.SetSpacing((1, 1, 1))
+example_dictionary = {'image_handle': image_handle, 'annotation_handle': annotation_handle,}
 
 image_processors = [
     Processors.ResampleSITKHandles(resample_keys=('image_handle', 'annotation_handle'),
@@ -29,7 +28,7 @@ image_processors = [
     Processors.DivideByValues(image_keys=('image_array',), values=(5,))
 ]
 
-example_dictionary = {'image_handle': image_handle, 'annotation_handle': annotation_handle}
+
 for processor in image_processors:
     processor.pre_process(example_dictionary)
 
